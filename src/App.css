@@ -1,0 +1,59 @@
+/* ===== HOME WRAPPER ===== */
+.home-wrapper {
+  background: white;
+}
+
+/* ===== HOME CONTENT (Below hero) ===== */
+.home-content {
+  padding: 2rem 3rem;
+  background: white;
+  color: #1a1a1a;
+}
+
+.home-left {
+  margin-top: 1rem;
+}
+
+.home-heading {
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+  color: #0B1120;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+/* ===== OTHER PAGES PLACEHOLDER ===== */
+.page-placeholder {
+  padding: 2rem;
+  margin-top: 80px;
+  background: white;
+  color: #1a1a1a;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 1.5rem;
+  }
+
+  .home-heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-content {
+    padding: 1rem;
+  }
+
+  .home-heading {
+    font-size: 1.6rem;
+  }
+}
