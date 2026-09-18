@@ -1,179 +1,104 @@
-// import React, { useState, useEffect } from 'react';
-// import { NavLink } from 'react-router-dom'; // Use NavLink for active states
-// import './Navbar.css'; // We'll create this next
-
-// const Navbar = () => {
-//   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-//   // Define your navigation items (matching your request)
-//   const navItems = [
-//     { name: 'Home', path: '/' },
-//     { name: 'About', path: '/about' },
-//     { name: 'Services', path: '/services' },
-//     { name: 'Careers', path: '/careers' },
-//     { name: 'Technologies', path: '/technologies' },
-//     { name: 'Contact', path: '/contact' },
-//   ];
-
-//   // Toggle mobile menu
-//   const toggleMenu = () => {
-//     setIsMenuOpen(!isMenuOpen);
-//   };
-
-//   // Close mobile menu when a link is clicked
-//   const closeMenu = () => {
-//     setIsMenuOpen(false);
-//   };
-
-//   // Optional: Close menu if window resizes to desktop
-//   useEffect(() => {
-//     const handleResize = () => {
-//       if (window.innerWidth > 1024 && isMenuOpen) {
-//         setIsMenuOpen(false);
-//       }
-//     };
-//     window.addEventListener('resize', handleResize);
-//     return () => window.removeEventListener('resize', handleResize);
-//   }, [isMenuOpen]);
-
-//   return (
-//     <nav className="navbar" role="navigation" aria-label="Main navigation">
-//       <div className="nav-container">
-        
-//         {/* Logo: Sweftfly Inc */}
-//         <NavLink to="/" className="logo" onClick={closeMenu}>
-//           Sweftfly<span>Inc</span>
-//         </NavLink>
-
-//         {/* Navigation Menu */}
-//         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-//           {navItems.map((item) => (
-//             <li key={item.name}>
-//               <NavLink 
-//                 to={item.path} 
-//                 className={({ isActive }) => isActive ? 'active' : ''}
-//                 onClick={closeMenu}
-//               >
-//                 {item.name}
-//               </NavLink>
-//             </li>
-//           ))}
-          
-//           {/* CTA Button inside mobile menu */}
-//           <li className="nav-cta">
-//             <NavLink to="/hire" className="btn-primary" onClick={closeMenu}>
-//               🔥 Hire Talent
-//             </NavLink>
-//           </li>
-//         </ul>
-
-//         {/* Desktop CTA (hidden on mobile) */}
-//         <div className="nav-cta desktop-cta">
-//           <NavLink to="/hire" className="btn-primary">
-//             🔥 Hire Talent
-//           </NavLink>
-//         </div>
-
-//         {/* Hamburger Button */}
-//         <button 
-//           className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
-//           onClick={toggleMenu}
-//           aria-label="Toggle navigation menu"
-//           aria-expanded={isMenuOpen}
-//         >
-//           <span className="bar"></span>
-//           <span className="bar"></span>
-//           <span className="bar"></span>
-//         </button>
-
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-import React, { useState, useEffect } from 'react';
+// import React,{useEffect,useRef,useState}from 'react';import{NavLink}from'react-router-dom';import{services}from'./serviceData';import'./Navbar.css';
+// export default function Navbar(){const[menu,setMenu]=useState(false),[drop,setDrop]=useState(false),ref=useRef();useEffect(()=>{const close=e=>{if(!ref.current?.contains(e.target))setDrop(false)};document.addEventListener('mousedown',close);return()=>document.removeEventListener('mousedown',close)},[]);const close=()=>{setMenu(false);setDrop(false)};return <nav className="navbar" aria-label="Main navigation"><div className="nav-container"><NavLink to="/" className="logo" onClick={close}>Sweftfly<span>Inc</span></NavLink><ul className={`nav-menu ${menu?'active':''}`}><li><NavLink to="/" onClick={close}>Home</NavLink></li><li><NavLink to="/about" onClick={close}>About</NavLink></li><li className="services-drop" ref={ref}><button onClick={()=>setDrop(!drop)} aria-expanded={drop} aria-controls="services-dropdown">Services <i>⌄</i></button><div id="services-dropdown" className={drop?'drop-menu open':'drop-menu'}>{services.map((s,i)=><NavLink key={s.slug} to={`/services/${s.slug}`} onClick={close}><small>0{i+1}</small>{s.name}<b>→</b></NavLink>)}</div></li><li><NavLink to="/technologies" onClick={close}>Technologies</NavLink></li><li><NavLink to="/contact" onClick={close}>Contact</NavLink></li><li className="nav-cta"><NavLink to="/hire" className="btn-primary" onClick={close}>Hire Talent</NavLink></li></ul><div className="nav-cta desktop-cta"><NavLink to="/hire" className="btn-primary">Hire Talent</NavLink></div><button className={`hamburger ${menu?'active':''}`} onClick={()=>setMenu(!menu)} aria-label="Toggle navigation menu" aria-expanded={menu}><span className="bar"/><span className="bar"/><span className="bar"/></button></div></nav>}
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { services } from './serviceData';
 import './Navbar.css';
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    // { name: 'Careers', path: '/careers' },
-    { name: 'Technologies', path: '/technologies' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+export default function Navbar() {
+  const [menu, setMenu] = useState(false);
+  const [drop, setDrop] = useState(false);
+  const ref = useRef();
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+    const close = (e) => {
+      if (!ref.current?.contains(e.target)) setDrop(false);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
+    document.addEventListener('mousedown', close);
+    document.addEventListener('touchstart', close);
+    return () => {
+      document.removeEventListener('mousedown', close);
+      document.removeEventListener('touchstart', close);
+    };
+  }, []);
+
+  const close = () => {
+    setMenu(false);
+    setDrop(false);
+  };
 
   return (
-    <nav className="navbar" role="navigation" aria-label="Main navigation">
+    <nav className="navbar" aria-label="Main navigation">
       <div className="nav-container">
-        
-        <NavLink to="/" className="logo" onClick={closeMenu}>
+        <NavLink to="/" className="logo" onClick={close}>
           Sweftfly<span>Inc</span>
         </NavLink>
 
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <NavLink 
-                to={item.path} 
-                className={({ isActive }) => isActive ? 'active' : ''}
-                onClick={closeMenu}
-              >
-                {item.name}
-              </NavLink>
-            </li>
-          ))}
-          
+        <ul className={`nav-menu ${menu ? 'active' : ''}`}>
+          <li>
+            <NavLink to="/" onClick={close}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" onClick={close}>About</NavLink>
+          </li>
+
+          <li className="services-drop" ref={ref}>
+            <button
+              type="button"
+              onClick={() => setDrop(!drop)}
+              aria-expanded={drop}
+              aria-controls="services-dropdown"
+            >
+              Services <i>⌄</i>
+            </button>
+
+            <div
+              id="services-dropdown"
+              className={drop ? 'drop-menu open' : 'drop-menu'}
+            >
+              {services.map((s, i) => (
+                <NavLink
+                  key={s.slug || s.id}
+                  to={`/services/${s.slug || s.id}`}
+                  onClick={close}
+                >
+                  <small>0{i + 1}</small>
+                  {s.title}
+                  <b>→</b>
+                </NavLink>
+              ))}
+            </div>
+          </li>
+
+          <li>
+            <NavLink to="/technologies" onClick={close}>Technologies</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact" onClick={close}>Contact</NavLink>
+          </li>
+
           <li className="nav-cta">
-            <NavLink to="/hire" className="btn-primary" onClick={closeMenu}>
-              🔥 Hire Talent
+            <NavLink to="/hire" className="btn-primary" onClick={close}>
+              Hire Talent
             </NavLink>
           </li>
         </ul>
 
         <div className="nav-cta desktop-cta">
-          <NavLink to="/hire" className="btn-primary">
-            🔥 Hire Talent
-          </NavLink>
+          <NavLink to="/hire" className="btn-primary">Hire Talent</NavLink>
         </div>
 
-        <button 
-          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
-          onClick={toggleMenu}
+        <button
+          className={`hamburger ${menu ? 'active' : ''}`}
+          onClick={() => setMenu(!menu)}
           aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
+          aria-expanded={menu}
         >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
         </button>
-
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
