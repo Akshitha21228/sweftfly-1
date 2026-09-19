@@ -171,7 +171,7 @@ export default function H1BFilingPage() {
 
               <div className="cp-text-block cp-text-block--two">
                 <p>
-                  SwiftFly Inc provides <strong>end-to-end H1B petition
+                  Sweftfly Inc provides <strong>end-to-end H1B petition
                   support</strong> — from initial strategy and documentation to
                   filing, RFE responses, transfers, and extensions.
                 </p>

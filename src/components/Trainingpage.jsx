@@ -137,7 +137,7 @@ export default function TrainingPage() {
               <div className="cp-text-block cp-text-block--one">
                 <p>
                   Technology moves fast, and staying current is what keeps
-                  careers moving. SwiftFly Inc's training programs are built by
+                  careers moving. Sweftfly Inc training programs are built by
                   senior engineers who've shipped real products — not just
                   classroom theory.
                 </p>

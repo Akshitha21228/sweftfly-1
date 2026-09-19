@@ -114,7 +114,7 @@ import './HomeSections.css';
 
 const sectors = [
   ['Consulting', 'Strategy & Advisory', '01'],
-  ['Media & Entertainment', 'Content & Platforms', '02'],
+  ['Contract Staffing', '', '02'],
   ['Staffing', 'Technology Talent', '03'],
   ['Training', 'Upskilling & Enablement', '04'],
   ['Cyber Security', 'Threat Defense', '05'],
@@ -147,7 +147,7 @@ const services = [
   {
     num: '02',
     title: 'Staffing',
-    text: 'We provide a full spectrum of IT staffing services worldwide.',
+    text: 'We provide a full spectrum of IT staffing services',
     href: '/services/staffing',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -272,14 +272,14 @@ export default function HomeSections() {
         <div className="sf-sectors__intro">
           <p className="sf-eyebrow">Sectors</p>
           <h2>
-            Where industries converge,<br />
-            <em>we build what's next.</em>
+            Technology Talent Across Industries,<br />
+            <em>Expertise Built Around Your Business</em>
           </h2>
           <p className="sf-sectors__copy">
-            As industries converge and new industries emerge, we are
-            re-imagining our strategy, solutions, and platforms as well. Our
-            innovators and thought leaders are in continuing conversations with
-            those who influence and shape the future of industries.
+            Technology Talent Across Industries. Expertise Built Around Your Business.
+Every industry has unique technology requirements, workforce challenges, and talent needs. SweftFly Inc. provides specialized IT staffing and talent solutions designed to help organizations across the United States access qualified technology professionals aligned with their business and technical requirements.
+We support organizations across industries by connecting them with specialized professionals across Software Engineering, Cloud & DevOps, Data Engineering, AI & Machine Learning, Cybersecurity, Enterprise Applications, Quality Engineering, and IT Infrastructure.
+Through Contract Staffing, Contract-to-Hire, Direct Placement, and Resource Augmentation, we help businesses build technology teams, fill critical positions, scale project teams, and access specialized talent as their workforce needs evolve.
           </p>
         </div>
 
@@ -313,7 +313,7 @@ export default function HomeSections() {
           <div className="sf-radial__hub" aria-hidden="true">
             <span className="sf-radial__pulse" />
             <span className="sf-radial__pulse sf-radial__pulse--2" />
-            <strong>SWIFTFLY</strong>
+            <strong>Sweftfly Inc</strong>
           </div>
 
           <ul className="sf-radial__nodes">
